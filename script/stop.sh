@@ -3,10 +3,10 @@ if test -z "$PROCESS_ID"
 then
   echo "Discovery Server not running"
 else
-  echo "Running discovery server : $PROCESS_ID"
+  echo "Running discovery server: $PROCESS_ID"
   kill -9 "$PROCESS_ID"
 fi
-echo "Shutting down discovery server ..."
+echo "Shutting down discovery server"
 sleep 2s;
 echo "............................................"
 echo "............................................"
