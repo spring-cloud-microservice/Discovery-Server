@@ -5,3 +5,7 @@ eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
+logging:
+  file:
+    #path: /tmp/
+    name: /tmp/app.log
