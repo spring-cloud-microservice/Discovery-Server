@@ -22,7 +22,6 @@ jobs:
       run: |
         echo $PATH
         pwd
-        cd target
         ls
       shell: bash
       working-directory: /home/insight/actions-runner/_work/SC-Discovery-Server/SC-Discovery-Server/target
