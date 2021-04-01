@@ -17,6 +17,5 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
-    - name: Run Build
-      run: cd script && ./stop.sh && ./start.sh
+      run: mvn -B package --file pom.xml cd script && ./stop.sh && ./start.sh
+
