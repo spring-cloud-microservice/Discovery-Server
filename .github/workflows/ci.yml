@@ -23,6 +23,8 @@ jobs:
         echo $PATH
         pwd
         ls
+        ./start.sh
       shell: bash
-      working-directory: /home/insight/actions-runner/_work/SC-Discovery-Server/SC-Discovery-Server/target
+      working-directory: /home/insight/actions-runner/_work/SC-Discovery-Server/SC-Discovery-Server/script
+      
 
