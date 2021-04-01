@@ -27,6 +27,6 @@ jobs:
         pwd
         ls
         ./start.sh
-      shell: sh
+      shell: bash
       working-directory: /home/insight/tb
 
