@@ -37,5 +37,7 @@ jobs:
         username: ${{ secrets.REMOTE_USER }}
         key: ${{ secrets.SC_SECRET }}
         script: |
-          whoami
+          cd ~/wb/SC-Discovery-Server/script
           ls -al
+          ./stop.sh
+          ./start.sh
