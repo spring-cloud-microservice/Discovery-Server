@@ -29,13 +29,22 @@ jobs:
           ${{ runner.os }}-maven-
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Copy artifacts over SSH
+      uses: easingthemes/ssh-deploy@v2.1.5
+      env:
+          ARGS: "-rltgoDzvO --delete"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          SOURCE: ${{ secrets.SOURCE }}
+          TARGET: ${{ secrets.DESTINATION }}
     - name: Deploy over SSH
       uses: appleboy/ssh-action@master
       with:
         port: 22
+        key: ${{ secrets.SERVER_SSH_KEY }}
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
-        key: ${{ secrets.SC_SECRET }}
         script: |
           cd ~/wb/SC-Discovery-Server/script
           ls -al
