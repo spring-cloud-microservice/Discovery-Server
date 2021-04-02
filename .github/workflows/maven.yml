@@ -30,13 +30,18 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Deploy over SSH
-      uses: easingthemes/ssh-deploy@v2.1.5
+      uses: kostya-ten/ssh-server-deploy@v4
       env:
-          SSH_PRIVATE_KEY: ${{ secrets.SC_SECRET }}
-          ARGS: "-rltgoDzvO --delete"
-          SOURCE: "target/discovery-server-0.0.1-SNAPSHOT.jar"
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: "~/wb/SC-Discovery-Server/target"
-          #EXCLUDE: "/dist/, /node_modules/"
-          #INCLUDE: "*.jar"
+        host: ${{ secrets.REMOTE_HOST }}
+        user: ${{ secrets.REMOTE_USER }}
+        private_key: ${{ secrets.SC_SECRET }}
+        scp_source: "target/discovery-server-0.0.1-SNAPSHOT.jar"
+        scp_target: "~/wb/SC-Discovery-Server/target"
+        before_script: |
+            df -h
+        after_script: |
+            whoami
+            cd ~/wb/SC-Discovery-Server/script
+            ./start.sh
+        #EXCLUDE: "/dist/, /node_modules/"
+        #INCLUDE: "*.jar"
