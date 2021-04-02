@@ -34,9 +34,9 @@ jobs:
       env:
           SSH_PRIVATE_KEY: ${{ secrets.SC_SECRET }}
           ARGS: "-rltgoDzvO --delete"
-          SOURCE: "target/"
+          SOURCE: "target/discovery-server-0.0.1-SNAPSHOT.jar"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: "~/wb/SC-Discovery-Server/target"
           #EXCLUDE: "/dist/, /node_modules/"
-          INCLUDE: "*.jar"
+          #INCLUDE: "*.jar"
