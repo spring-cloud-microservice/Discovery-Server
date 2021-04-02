@@ -22,7 +22,7 @@ jobs:
     runs-on: self-hosted
     needs: job1
     steps:
-    - name: Run App
+    - name: Run Application
       run: |
         pwd
         ls
