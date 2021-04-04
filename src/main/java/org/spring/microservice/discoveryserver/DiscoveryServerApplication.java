@@ -1,5 +1,6 @@
 package org.spring.microservice.discoveryserver;
 
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -22,11 +23,11 @@ public class DiscoveryServerApplication {
 		SpringApplication.run(DiscoveryServerApplication.class, args);
 	}
 
+	@Data
 	@RestController
 	class ServiceInstanceRestController {
 
-		@Autowired
-		private DiscoveryClient discoveryClient;
+		private final DiscoveryClient discoveryClient;
 
 		@RequestMapping("/service-instances/{applicationName}")
 		public List<ServiceInstance> serviceInstancesByApplicationName(@PathVariable String applicationName) {

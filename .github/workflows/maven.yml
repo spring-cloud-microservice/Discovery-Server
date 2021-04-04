@@ -11,9 +11,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 11
@@ -38,15 +36,17 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           SOURCE: ${{ secrets.SOURCE }}
           TARGET: ${{ secrets.DESTINATION }}
+  deploy:
     - name: Deploy over SSH
+      needs: build
       uses: appleboy/ssh-action@master
       with:
-        port: 22
         key: ${{ secrets.SERVER_SSH_KEY }}
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         script: |
-          cd ~/wb/SC-Discovery-Server/script
+          cd script
           ls -al
           ./stop.sh
           ./start.sh
+      working-directory: ~/wb
