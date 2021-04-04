@@ -47,7 +47,7 @@ jobs:
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         script: |
-          echo $GITHUB_SERVER_URL
+          echo ${{github.repository}}
         # ls -a
         # ./stop.sh
         # ./start.sh
