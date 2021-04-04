@@ -68,5 +68,5 @@ jobs:
         script: |
           cd ${{github.repository}}
           ls -a
-         ./stop.sh
-         ./start.sh
+          ./stop.sh
+          ./start.sh
