@@ -35,7 +35,7 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           SOURCE: ${{ secrets.SOURCE }}
-          TARGET: ${{ secrets.DESTINATION }}
+          TARGET: ${{github.repository}}
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -51,6 +51,7 @@ jobs:
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         script: |
+          mkdir -p cd ${{github.repository}}
           cd ${{github.repository}}
           ls -a
         # ./stop.sh
