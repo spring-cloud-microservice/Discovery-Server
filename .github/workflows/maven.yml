@@ -37,6 +37,8 @@ jobs:
           SOURCE: ${{ secrets.SOURCE }}
           TARGET: ${{ secrets.DESTINATION }}
   deploy:
+    runs-on: ubuntu-latest
+    steps:
     - name: Deploy over SSH
       needs: build
       uses: appleboy/ssh-action@master
@@ -49,4 +51,4 @@ jobs:
           ls -al
           ./stop.sh
           ./start.sh
-      working-directory: ~/wb
+    working-directory: ~/wb
