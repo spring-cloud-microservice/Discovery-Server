@@ -38,17 +38,17 @@ jobs:
           TARGET: ${{ secrets.DESTINATION }}
   deploy:
     runs-on: ubuntu-latest
+    needs: build
     steps:
     - name: Deploy over SSH
-      needs: build
       uses: appleboy/ssh-action@master
+      working-directory: ~/wb
       with:
         key: ${{ secrets.SERVER_SSH_KEY }}
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         script: |
           cd script
-          ls -al
+          ls -a
           ./stop.sh
           ./start.sh
-    working-directory: ~/wb
